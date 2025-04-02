@@ -1,4 +1,4 @@
-import bodyParser, { json } from 'body-parser';
+import bodyParser from 'body-parser';
 import express, { Application, Request, Response } from 'express';
 import xss from 'xss-clean';
 import cors from 'cors';
@@ -11,6 +11,10 @@ import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
 import { DB_CONNECT } from './db';
+import FeedbackRouter from './routes/Feedback/Feedback.routes';
+import WorkshopRouter from './routes/Workshop/Workshop.routes';
+import ConnectRouter from './routes/Connect/Connect.routes';
+import AnnouncementRouter from './routes/Announcement/Announcement.routes';
 
 const app: Application = express();
 const logDir = path.join(__dirname, 'logs');
@@ -50,7 +54,6 @@ const customMorganFormat = morgan((tokens, req, res) => {
 });
 app.use(customMorganFormat);
 
-// Use Morgan to log into a file
 app.use(morgan('combined', { stream }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -79,6 +82,11 @@ app.get('/', (req: Request, res: Response) => {
     })
     .status(200);
 });
+
+app.use('/api/v1/feedback', FeedbackRouter);
+app.use('/api/v1/workshop', WorkshopRouter);
+app.use('/api/v1/connect', ConnectRouter);
+app.use('/api/v1/announcement', AnnouncementRouter);
 
 export default app;
 export { httpServer };

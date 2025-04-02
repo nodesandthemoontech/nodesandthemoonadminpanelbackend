@@ -1,8 +1,12 @@
 import mongoose, { Schema, Model } from 'mongoose';
-import { WorkshopDocument, ImageType, WorkshopType } from './types/index';
+import { WorkshopDocument } from './types/index';
 
 const WorkShopSchema = new Schema<WorkshopDocument>(
   {
+    id: {
+      type: Number,
+      required: true,
+    },
     title: {
       type: String,
       require: true,

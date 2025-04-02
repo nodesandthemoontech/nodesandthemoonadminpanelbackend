@@ -6,4 +6,5 @@ export interface FeedbackDocument extends Document {
   ratings: number;
   feedback: string;
   suggestion: string;
+  status: 'Pending' | 'Accepted' | 'Rejected';
 }
