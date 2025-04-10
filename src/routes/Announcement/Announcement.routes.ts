@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router,Request,Response } from 'express';
 import {
   GetAnnouncement,
   CreateAnnouncement,
@@ -8,13 +8,13 @@ import {
 
 const AnnouncementRouter = Router();
 
-AnnouncementRouter.route('/getAnnouncement').get(GetAnnouncement);
-AnnouncementRouter.route('/createAnnouncement').post(CreateAnnouncement);
-AnnouncementRouter.route('/editAnnouncement/:announcementId').patch(
-  EditAnnouncement
+AnnouncementRouter.route('/getAnnouncement').get(GetAnnouncement as (req:Request,res:Response)=>void );
+AnnouncementRouter.route('/createAnnouncement').post(CreateAnnouncement as (req:Request,res:Response)=>void );
+AnnouncementRouter.route('/editAnnouncement').patch(
+  EditAnnouncement as (req:Request,res:Response)=>void
 );
-AnnouncementRouter.route('deleteAnnouncement/:announcementId').delete(
-  DeleteAnnouncement
+AnnouncementRouter.route('/deleteAnnouncement').delete(
+  DeleteAnnouncement as (req:Request,res:Response)=>void
 );
 
 export default AnnouncementRouter;

@@ -1,8 +1,5 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { FeedbackDocument } from './types/index';
-import autoIncrement from 'mongoose-auto-increment';
-
-autoIncrement.initialize(mongoose.connection);
 
 const FeedbackSchema = new Schema<FeedbackDocument>(
   {
@@ -39,13 +36,6 @@ const FeedbackSchema = new Schema<FeedbackDocument>(
   },
   { timestamps: true }
 );
-
-FeedbackSchema.plugin(autoIncrement.plugin, {
-  model: 'Feedback',
-  field: 'id',
-  startAt: 1,
-  incrementBy: 1,
-});
 
 export const FeedbackModel: Model<FeedbackDocument> =
   mongoose.model<FeedbackDocument>('Feedback', FeedbackSchema);

@@ -1,8 +1,5 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { ConnectDocumnet } from './types/index';
-import autoIncrement from 'mongoose-auto-increment';
-
-autoIncrement.initialize(mongoose.connection);
 
 const ConnectSchema = new Schema<ConnectDocumnet>({
   title: {
@@ -15,11 +12,11 @@ const ConnectSchema = new Schema<ConnectDocumnet>({
   },
   startDate: {
     type: Number,
-    required: true,
+    // required: true,
   },
   lastDate: {
     type: Number,
-    required: true,
+    // required: true,
   },
   status: {
     type: String,
@@ -28,12 +25,7 @@ const ConnectSchema = new Schema<ConnectDocumnet>({
   },
 });
 
-ConnectSchema.plugin(autoIncrement.plugin, {
-  model: 'Connect',
-  field: 'id',
-  startAt: 1,
-  incrementBy: 1,
-});
+
 
 export const ConnectModel: Model<ConnectDocumnet> =
   mongoose.model<ConnectDocumnet>('Connect', ConnectSchema);

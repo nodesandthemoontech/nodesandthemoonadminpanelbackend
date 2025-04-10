@@ -14,10 +14,17 @@ export const createMessageSchema = yup.object({
 });
 
 export const editMessageSchema = yup.object({
-  messageId: yup
-    .number()
-    .min(1, 'Message id must be postive')
-    .required('Message id is required'),
+  messageId: yup.string().required('Message id is required'),
   title: yup.string().max(30, 'Title is too long!!'),
   message: yup.string(),
 });
+
+export const deleteMessageSchema=yup.object({
+  messageId: yup.string().required('Message id is required'),
+})
+
+export const sendMessageSchema=yup.object({
+    messageId: yup.string().required('Message id is required'),
+    title: yup.string().max(30, 'Title is too long!!'),
+    message: yup.string(),
+})

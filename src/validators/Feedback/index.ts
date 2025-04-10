@@ -14,10 +14,7 @@ export const getAllFeedbackSchema = yup.object({
 });
 
 export const editFeedbackSchema = yup.object({
-  feedbackId: yup
-    .number()
-    .min(1, 'Feedback id must be postive')
-    .required('Feedback id is required'),
+  email: yup.string().email().required('Mail is required'),
   status: yup
     .string()
     .oneOf(['Pending', 'Accepted', 'Rejected'], 'Status is not correct')
