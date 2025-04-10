@@ -13,7 +13,7 @@ FeedbackRouter.route('/getFeedback').get(
 FeedbackRouter.route('/createFeedback').post(
   CreateFeedback as (req: Request, res: Response) => void
 );
-FeedbackRouter.route('/editFeedback/:feedbackId').patch(
+FeedbackRouter.route('/editFeedback').patch(
   EditFeedback as (req: Request, res: Response) => void
 );
 
