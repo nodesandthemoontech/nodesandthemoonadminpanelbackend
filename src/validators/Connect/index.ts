@@ -19,12 +19,12 @@ export const editMessageSchema = yup.object({
   message: yup.string(),
 });
 
-export const deleteMessageSchema=yup.object({
+export const deleteMessageSchema = yup.object({
   messageId: yup.string().required('Message id is required'),
-})
+});
 
-export const sendMessageSchema=yup.object({
-    messageId: yup.string().required('Message id is required'),
-    title: yup.string().max(30, 'Title is too long!!'),
-    message: yup.string(),
-})
+export const sendMessageSchema = yup.object({
+  messageId: yup.string().required('Message id is required'),
+  title: yup.string().max(30, 'Title is too long!!'),
+  message: yup.string(),
+});

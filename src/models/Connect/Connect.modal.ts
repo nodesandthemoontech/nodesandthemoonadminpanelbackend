@@ -25,7 +25,5 @@ const ConnectSchema = new Schema<ConnectDocumnet>({
   },
 });
 
-
-
 export const ConnectModel: Model<ConnectDocumnet> =
   mongoose.model<ConnectDocumnet>('Connect', ConnectSchema);
