@@ -15,6 +15,7 @@ import FeedbackRouter from './routes/Feedback/Feedback.routes';
 import WorkshopRouter from './routes/Workshop/Workshop.routes';
 import ConnectRouter from './routes/Connect/Connect.routes';
 import AnnouncementRouter from './routes/Announcement/Announcement.routes';
+import AuthRouter from './routes/Auth/Auth.routes';
 
 const app: Application = express();
 const logDir = path.join(__dirname, 'logs');
@@ -87,6 +88,7 @@ app.use('/api/v1/feedback', FeedbackRouter);
 app.use('/api/v1/workshop', WorkshopRouter);
 app.use('/api/v1/connect', ConnectRouter);
 app.use('/api/v1/announcement', AnnouncementRouter);
+app.use('/api/v1/auth', AuthRouter);
 
 export default app;
 export { httpServer };
