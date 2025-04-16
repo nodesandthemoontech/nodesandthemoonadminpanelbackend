@@ -47,7 +47,7 @@ export const Login = async (req: Request, res: Response) => {
     if (!LoggedInUser) {
       return res
         .status(404)
-        .json({ message: 'User with this email not exist' });
+        .json({ error: 'User with this email not exist' });
     } else {
       const isPasswordCorrect = await LoggedInUser.isPasswordCorrect(password);
       if (isPasswordCorrect) {
@@ -70,7 +70,7 @@ export const Login = async (req: Request, res: Response) => {
           })
           .json({ message: 'User Logged In Suceefully' });
       } else {
-        return res.status(401).json({ message: 'Invalid Credaintials' });
+        return res.status(401).json({ error: 'Invalid Credaintials' });
       }
     }
   } catch (err) {
@@ -78,7 +78,7 @@ export const Login = async (req: Request, res: Response) => {
       return res.status(400).json({ error: err.errors });
     }
     console.log(chalk.redBright(err));
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res.status(500).json({ error: 'Something went wrong' });
   }
 };
 
@@ -120,7 +120,7 @@ export const Register = async (req: Request, res: Response) => {
       return res.status(400).json({ error: err.errors });
     }
     console.log(chalk.redBright(err));
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res.status(500).json({ error: 'Something went wrong' });
   }
 };
 
@@ -128,7 +128,7 @@ export const Logout = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
     const refreshToken = req.cookies.refreshToken;
-    await loginUserSchema.validate(
+    await logoutUserSchema.validate(
       { email, refreshToken },
       { abortEarly: false }
     );
@@ -147,6 +147,6 @@ export const Logout = async (req: Request, res: Response) => {
       return res.status(400).json({ error: err.errors });
     }
     console.log(chalk.redBright(err));
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res.status(500).json({ error: 'Something went wrong' });
   }
 };

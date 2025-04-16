@@ -36,7 +36,7 @@ export const CreateFeedback = async (req: Request, res: Response) => {
     if (AlreadyExistFeedback.length) {
       return res
         .status(409)
-        .json({ message: 'Feedback already submitted for this email.' });
+        .json({ error: 'Feedback already submitted for this email.' });
     } else {
       const NewFeedback = new FeedbackModel({
         name,

@@ -28,7 +28,7 @@ export const GetAnnouncement = async (req: Request, res: Response) => {
       return res.status(400).json({ error: err.errors });
     }
     console.log(chalk.redBright(err));
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res.status(500).json({ error: 'Something went wrong' });
   }
 };
 export const CreateAnnouncement = async (req: Request, res: Response) => {
@@ -51,7 +51,7 @@ export const CreateAnnouncement = async (req: Request, res: Response) => {
       return res.status(400).json({ error: err.errors });
     }
     console.log(chalk.redBright(err));
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res.status(500).json({ error: 'Something went wrong' });
   }
 };
 
@@ -71,7 +71,7 @@ export const EditAnnouncement = async (req: Request, res: Response) => {
       { new: true }
     );
     if (!UpdatedAnnouncement) {
-      return res.status(404).json({ message: 'Not find this announcment id' });
+      return res.status(404).json({ error: 'Not find this announcment id' });
     } else {
       return res
         .status(200)
@@ -82,7 +82,7 @@ export const EditAnnouncement = async (req: Request, res: Response) => {
       return res.status(400).json({ error: err.errors });
     }
     console.log(chalk.redBright(err));
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res.status(500).json({ error: 'Something went wrong' });
   }
 };
 
@@ -95,7 +95,7 @@ export const DeleteAnnouncement = async (req: Request, res: Response) => {
       _id: announcementId,
     });
     if (!DeleteAnnouncement) {
-      return res.status(404).json({ message: 'Not find this announcment id' });
+      return res.status(404).json({ error: 'Not find this announcment id' });
     } else {
       return res
         .status(200)
@@ -106,6 +106,6 @@ export const DeleteAnnouncement = async (req: Request, res: Response) => {
       return res.status(400).json({ error: err.errors });
     }
     console.log(chalk.redBright(err));
-    return res.status(500).json({ message: 'Something went wrong' });
+    return res.status(500).json({ error: 'Something went wrong' });
   }
 };

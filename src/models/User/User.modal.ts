@@ -3,6 +3,7 @@ import { UserDocument } from './types/index';
 import bcrypt from 'bcrypt';
 import jwt, { Secret } from 'jsonwebtoken';
 import crypto from 'crypto';
+import ms from 'ms';
 
 const UserSchema = new Schema<UserDocument>({
   email: {
@@ -41,10 +42,8 @@ UserSchema.methods.genrateAccessToken = function () {
     _id: this._id,
     email: this.email,
   };
-  const secretKey: Secret = process.env.REFRESH_TOKEN_SCERET_KEY as Secret;
-  const expiresIn = process.env.REFRESH_TOKEN_EXPIRY
-    ? parseInt(process.env.REFRESH_TOKEN_EXPIRY, 10)
-    : undefined;
+  const secretKey: Secret = process.env.ACCESS_TOKEN_SCERET_KEY as Secret;
+  const expiresIn = process.env.ACCESS_TOKEN_EXPIRY as unknown as number
   const token = jwt.sign(
     payload,
     secretKey,
@@ -58,9 +57,7 @@ UserSchema.methods.genrateRefreshToken = function () {
     _id: this._id,
   };
   const secretKey: Secret = process.env.REFRESH_TOKEN_SCERET_KEY as Secret;
-  const expiresIn = process.env.REFRESH_TOKEN_EXPIRY
-    ? parseInt(process.env.REFRESH_TOKEN_EXPIRY, 10)
-    : undefined;
+  const expiresIn = process.env.REFRESH_TOKEN_EXPIRY as unknown as number
   const token = jwt.sign(
     payload,
     secretKey,

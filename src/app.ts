@@ -16,6 +16,7 @@ import WorkshopRouter from './routes/Workshop/Workshop.routes';
 import ConnectRouter from './routes/Connect/Connect.routes';
 import AnnouncementRouter from './routes/Announcement/Announcement.routes';
 import AuthRouter from './routes/Auth/Auth.routes';
+import SubscriberRouter from './routes/Subscriber/Subscriber.routes';
 
 const app: Application = express();
 const logDir = path.join(__dirname, 'logs');
@@ -71,7 +72,17 @@ const limiter = rateLimit({
 app.use(xss());
 app.use(limiter);
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      'http://localhost:5173',
+      'https://nodesandthemoon.vercel.app',
+      'https://nodesandthemoonadminpanel.vercel.app',
+      'https://nodesandthemoon.com/',
+    ],
+    credentials: true,
+  })
+);
 app.use(helmet());
 
 DB_CONNECT();
@@ -89,6 +100,7 @@ app.use('/api/v1/workshop', WorkshopRouter);
 app.use('/api/v1/connect', ConnectRouter);
 app.use('/api/v1/announcement', AnnouncementRouter);
 app.use('/api/v1/auth', AuthRouter);
+app.use('/api/v1/subscriber', SubscriberRouter);
 
 export default app;
 export { httpServer };
